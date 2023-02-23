@@ -17,7 +17,7 @@ import se.pedramfk.etl.framework.conf.RuntimeConfiguration;
  * @version 0.0.1-SNAPSHOT
  * @author Pedram Fathollahzadeh, pedramkf@kth.se
  */
-public interface DataLayer<T extends DataType> {
+public interface DataLayer<T extends DataSchema> {
 
     public Dataset<T> getData();
 

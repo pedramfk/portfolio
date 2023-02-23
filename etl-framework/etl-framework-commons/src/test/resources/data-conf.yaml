@@ -1,16 +1,15 @@
 baseLayerConf:
-  path: "/some/path/"
-  format: "csv"
+  path: file:/Users/pedramfk/git/portfolio/etl-framework/etl-framework-commons/src/test/resources/sample_data/
+  format: "parquet"
   streamConf:
     format: "console"
     outputMode: "append"
     trigger: "5 seconds"
 evolvedLayerConf:
-  path: "/some/path/"
+  path: /Users/pedramfk/git/portfolio/etl-framework/etl-framework-commons/src/test/resources/
   format: "avro"
   partitioning:
-    - "fieldA"
-    - "fieldB"
+    - "name"
   streamConf:
     format: "console"
     outputMode: "append"

@@ -1,0 +1,16 @@
+appName: "test-immutable-fs-layer"
+master: "local[*]"
+enableHiveSupport: false
+settings:
+  - key: "enableHiveSupport"
+    value: false
+  #- key: "spark.serializer"
+  #  value: "org.apache.spark.serializer.KryoSerializer"
+  #- key: "spark.kryo.registrationRequired"
+  #  value: false
+  #- key: "setWarnUnregisteredClasses"
+  #  value: true
+  #- key: "spark.kryo.classesToRegister"
+  #  value: "se.pedramfk.etl.framework.commons.immutable.fs.SampleData"
+kryoClasses:
+  - "se.pedramfk.etl.framework.commons.immutable.fs.SampleData"

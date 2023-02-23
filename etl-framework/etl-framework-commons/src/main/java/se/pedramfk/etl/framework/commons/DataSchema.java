@@ -1,5 +1,7 @@
 package se.pedramfk.etl.framework.commons;
 
-public interface DataSchema {
+import java.io.Serializable;
+
+public interface DataSchema extends Serializable {
     
 }

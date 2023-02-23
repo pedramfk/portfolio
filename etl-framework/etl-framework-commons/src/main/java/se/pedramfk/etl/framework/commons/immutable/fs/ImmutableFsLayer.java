@@ -4,12 +4,12 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Encoder;
 import org.apache.spark.sql.types.StructType;
 
-import se.pedramfk.etl.framework.commons.DataType;
+import se.pedramfk.etl.framework.commons.DataSchema;
 import se.pedramfk.etl.framework.commons.immutable.ImmutableDataLayer;
 import se.pedramfk.etl.framework.conf.RuntimeConfiguration;
 
 
-public abstract class ImmutableFsLayer<T extends DataType> implements ImmutableDataLayer<T> {
+public abstract class ImmutableFsLayer<T extends DataSchema> implements ImmutableDataLayer<T> {
 
     private final RuntimeConfiguration conf;
     private final Encoder<T> encoder;
@@ -30,7 +30,8 @@ public abstract class ImmutableFsLayer<T extends DataType> implements ImmutableD
             .option("path", conf.getBaseLayerConfiguration().getPath())
             .schema(schema)
             .load()
-            .as(encoder);
+            .as(encoder)
+            .transform(filter());
 
     }
 
@@ -43,7 +44,8 @@ public abstract class ImmutableFsLayer<T extends DataType> implements ImmutableD
             .option("path", conf.getBaseLayerConfiguration().getPath())
             .schema(schema)
             .load()
-            .as(encoder);
+            .as(encoder)
+            .transform(filter());
             
     }
 
