@@ -26,6 +26,7 @@ public final class DataConfiguration {
     public static final class BaseLayerConf {
         private String path;
         private String format;
+        private StreamConf streamConf;
     }
     @Getter 
     @Setter

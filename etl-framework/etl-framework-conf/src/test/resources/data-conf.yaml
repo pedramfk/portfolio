@@ -1,6 +1,10 @@
 baseLayerConf:
   path: "/some/path/"
   format: "csv"
+  streamConf:
+    format: "console"
+    outputMode: "append"
+    trigger: "5 seconds"
 evolvedLayerConf:
   path: "/some/path/"
   format: "avro"

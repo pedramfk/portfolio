@@ -1,6 +1,4 @@
-package se.pedramfk.etl.framework.commons.immutable.fs;
-
-import se.pedramfk.etl.framework.commons.DataType;
+package se.pedramfk.etl.framework.commons;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,18 +14,10 @@ import static org.apache.spark.sql.types.DataTypes.BooleanType;
 import static org.apache.spark.sql.types.DataTypes.TimestampType;
 import static org.apache.spark.sql.types.DataTypes.createStructField;
 
-/*
-id,active,name,age,timestamp
-1,true,pedram,30,2023-02-14T04:00:00.245
-2,false,karin,35,2023-02-14T04:01:00.245
-3,true,test1,20,2023-02-14T04:10:00.245
-4,false,test2,3,2023-02-15T06:00:00.245
-5,true,test3,4,2023-02-16T14:00:00.100
- */
 
 @Getter 
 @Setter
-public final class SampleData implements DataType {
+public final class SampleData implements DataSchema {
     
     private static final long serialVersionUID = 100L;
 

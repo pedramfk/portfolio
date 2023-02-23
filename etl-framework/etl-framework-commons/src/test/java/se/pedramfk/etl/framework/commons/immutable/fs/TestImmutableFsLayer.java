@@ -1,12 +1,13 @@
 package se.pedramfk.etl.framework.commons.immutable.fs;
 
 import java.io.InputStream;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import se.pedramfk.etl.framework.commons.SampleData;
+import se.pedramfk.etl.framework.commons.SampleDataLayer;
 import se.pedramfk.etl.framework.conf.RuntimeConfiguration;
 
 
@@ -35,11 +36,6 @@ public final class TestImmutableFsLayer {
     public void testGetData() {
         System.out.println(immutableFsLayer.getConfiguration().getBaseLayerConfiguration().getPath());
         immutableFsLayer.getData().show(false);
-    }
-
-    
-    public static final void main(String[] args) {
-        
     }
     
 }
