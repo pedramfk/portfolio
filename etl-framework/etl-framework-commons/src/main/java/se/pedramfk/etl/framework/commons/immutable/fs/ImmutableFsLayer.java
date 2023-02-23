@@ -30,7 +30,8 @@ public abstract class ImmutableFsLayer<T extends DataType> implements ImmutableD
             .option("path", conf.getBaseLayerConfiguration().getPath())
             .schema(schema)
             .load()
-            .as(encoder);
+            .as(encoder)
+            .transform(filter());
 
     }
 
@@ -43,7 +44,8 @@ public abstract class ImmutableFsLayer<T extends DataType> implements ImmutableD
             .option("path", conf.getBaseLayerConfiguration().getPath())
             .schema(schema)
             .load()
-            .as(encoder);
+            .as(encoder)
+            .transform(filter());
             
     }
 

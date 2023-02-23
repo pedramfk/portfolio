@@ -1,0 +1,12 @@
+baseLayerConf:
+  path: file:/Users/pedramfk/git/portfolio/etl-framework/etl-framework-commons/src/test/resources/sample_data.parquet
+  format: "parquet"
+evolvedLayerConf:
+  path: /Users/pedramfk/git/portfolio/etl-framework/etl-framework-commons/src/test/resources/
+  format: "avro"
+  partitioning:
+    - "name"
+  streamConf:
+    format: "console"
+    outputMode: "append"
+    trigger: "5 seconds"

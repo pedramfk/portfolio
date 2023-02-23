@@ -1,43 +1,45 @@
 package se.pedramfk.etl.framework.commons.immutable.fs;
 
-import java.sql.Timestamp;
+import java.io.InputStream;
 
-import static org.apache.spark.sql.types.DataTypes.LongType;
-import static org.apache.spark.sql.types.DataTypes.IntegerType;
-import static org.apache.spark.sql.types.DataTypes.StringType;
-import static org.apache.spark.sql.types.DataTypes.BooleanType;
-import static org.apache.spark.sql.types.DataTypes.TimestampType;
-import static org.apache.spark.sql.types.DataTypes.createStructField;
-import org.apache.spark.sql.types.StructField;
-import org.apache.spark.sql.types.StructType;
-
-import lombok.Getter;
-import lombok.Setter;
-import se.pedramfk.etl.framework.commons.DataType;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import se.pedramfk.etl.framework.conf.RuntimeConfiguration;
 
 
+@TestInstance(Lifecycle.PER_CLASS)
 public final class TestImmutableFsLayer {
 
+    private static final InputStream SPARK_CONF = ClassLoader.getSystemResourceAsStream("spark-conf.yaml");
+    private static final InputStream DATA_CONF = ClassLoader.getSystemResourceAsStream("data-conf.yaml");
+
+    private SampleDataLayer<SampleData> immutableFsLayer;
+
+    @BeforeAll
+    public void setup() throws ClassNotFoundException {
+        immutableFsLayer = new SampleDataLayer<>(
+            new RuntimeConfiguration(SPARK_CONF, DATA_CONF), 
+            SampleData.ENCODER(), 
+            SampleData.SCHEMA());
+    }
+
+    @AfterAll
+    public void cleanup() {
+        immutableFsLayer.getConfiguration().closeSparkSession();
+    }
+
+    @Test
+    public void testGetData() {
+        System.out.println(immutableFsLayer.getConfiguration().getBaseLayerConfiguration().getPath());
+        immutableFsLayer.getData().show(false);
+    }
+
     
-    
-    public static final class SampleData implements DataType {
-
-        private static final long serialVersionUID = 100L;
-
-        @Getter @Setter private long id;
-        @Getter @Setter private boolean active;
-        @Getter @Setter private String name;
-        @Getter @Setter private int age;
-        @Getter @Setter private Timestamp timestamp;
-
-        public static final StructType SCHEMA = new StructType(new StructField[] {
-            createStructField("id", LongType, false), 
-            createStructField("active", BooleanType, false), 
-            createStructField("name", StringType, false), 
-            createStructField("age", IntegerType, false), 
-            createStructField("timestamp", TimestampType, false), 
-        });
-
+    public static final void main(String[] args) {
+        
     }
     
 }
